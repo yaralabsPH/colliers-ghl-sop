@@ -8,6 +8,8 @@ Internal operations documentation, published as static pages.
 - `colliers-catering-enquiry-sop.html` — "Get my quote" form enquiry SOP
 - `colliers-catering-chat-widget-sop.html` — Chat widget enquiry SOP
 - `colliers-catering-flex-ghl-integration.html` — Flex → GHL integration reference
+- ree-tasting-booking-sop.html - Free Tasting booking link written SOP
+- ree-tasting-booking-video.html - Free Tasting booking link video tutorial
 
 ## Deploying with GitHub Pages
 
