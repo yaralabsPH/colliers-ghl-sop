@@ -78,6 +78,25 @@
   }
   .masthead-meta strong{color:#f2ede2;font-weight:600;}
 
+  .home-link{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    color:#f2ede2;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+    line-height:1;
+    padding:10px 12px;
+    border:1px solid rgba(242,237,226,.26);
+    border-radius:6px;
+    background:rgba(255,255,255,.06);
+    transition:background .15s, border-color .15s;
+  }
+  .home-link:hover{
+    background:rgba(255,255,255,.12);
+    border-color:rgba(242,237,226,.44);
+  }
   /* ---------- LAYOUT ---------- */
   .shell{
     max-width:1180px;
@@ -477,6 +496,7 @@
     header.masthead{padding:26px 20px 24px;}
     .masthead-inner{align-items:flex-start;}
     .masthead-meta{text-align:left;}
+    .home-link{margin-bottom:18px;}
     footer.foot{padding:0 20px 40px;}
   }
 </style>
@@ -484,6 +504,7 @@
 <body>
 
 <header class="masthead">
+  <a class="home-link" href="index.html" aria-label="Back to SOP index">&larr; Home</a>
   <div class="masthead-inner">
     <div>
       <div class="masthead-eyebrow">STANDARD OPERATING PROCEDURE</div>
