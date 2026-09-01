@@ -1,22 +1,24 @@
-# Colliers Catering — SOPs
+# Colliers Catering - SOPs
 
 Internal operations documentation, published as static pages.
 
 ## Pages
 
-- `index.html` — SOP index (start here)
-- `colliers-catering-enquiry-sop.html` — "Get my quote" form enquiry SOP
-- `colliers-catering-chat-widget-sop.html` — Chat widget enquiry SOP
-- `colliers-catering-flex-ghl-integration.html` — Flex → GHL integration reference
-- ree-tasting-booking-sop.html - Free Tasting booking link written SOP
-- ree-tasting-booking-video.html - Free Tasting booking link video tutorial
+- `index.html` - SOP index (start here)
+- `colliers-catering-enquiry-sop.html` - "Get my quote" form enquiry SOP
+- `colliers-catering-chat-widget-sop.html` - Chat widget enquiry SOP
+- `colliers-catering-flex-ghl-integration.html` - Flex to GHL integration reference
+- `free-tasting-booking-sop.html` - Free Tasting booking link written SOP
+- `free-tasting-booking-video.html` - Free Tasting booking link video tutorial
+- `free-tasting-experience-email-notifications-sop.html` - Free Tasting experience and email notifications written SOP
+- `free-tasting-experience-email-notifications-video.html` - Free Tasting experience and email notifications video tutorial
 
 ## Deploying with GitHub Pages
 
-1. Create a new GitHub repo (public, or private if you're on a paid plan — Pages needs public on the free tier).
-2. Push everything in this folder to the repo root (see commands below).
-3. In the repo: **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main, folder: / (root)** → Save.
-4. GitHub gives you a URL like `https://<username>.github.io/<repo-name>/` — that's your live site, index.html loads automatically.
+1. Create a new GitHub repo.
+2. Push everything in this folder to the repo root.
+3. In the repo: Settings > Pages > Build and deployment > Source: Deploy from a branch > Branch: main, folder: / (root) > Save.
+4. GitHub gives you a URL like `https://<username>.github.io/<repo-name>/`.
 
 ```bash
 cd path/to/this/folder
