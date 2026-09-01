@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOP Index — Colliers Catering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep: #0f2338;
+    --navy: #17324e;
+    --navy-soft: #3a5872;
+    --paper: #f6f3ec;
+    --paper-card: #ffffff;
+    --ink: #1c2530;
+    --ink-soft: #667585;
+    --line: #e2ddd1;
+    --clay: #c1622c;
+    --clay-soft: #f3e3d4;
+    --ok: #4f7a5c;
+    --ok-soft: #e7efe6;
+    --amber: #a5760f;
+    --amber-soft: #f4e9d3;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  header.masthead{
+    background:var(--navy-deep);
+    color:#f2ede2;
+    padding:30px 40px;
+    border-bottom:3px solid var(--clay);
+  }
+  .masthead-inner{
+    max-width:1100px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .masthead-eyebrow{
+    color:var(--clay-soft);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.04em;
+    margin-bottom:8px;
+    opacity:.85;
+  }
+  h1{
+    font-weight:700;
+    font-size:24px;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  .masthead-meta{
+    text-align:right;
+    font-size:12.5px;
+    color:#8fa1af;
+    line-height:1.6;
+  }
+  .masthead-meta strong{color:#f2ede2;font-weight:600;}
+
+  .shell{
+    max-width:1100px;
+    margin:0 auto;
+    padding:34px 40px 70px;
+  }
+
+  .intro{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:24px;
+  }
+  .intro p{
+    margin:0;
+    font-size:14px;
+    color:var(--ink-soft);
+    max-width:520px;
+    line-height:1.55;
+  }
+
+  .stats{
+    display:flex;
+    gap:22px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .stats b{
+    color:var(--navy);
+    font-size:15px;
+    display:block;
+    font-weight:700;
+  }
+
+  .search-row{
+    margin-bottom:18px;
+  }
+  #filter{
+    width:100%;
+    max-width:340px;
+    padding:9px 12px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    background:var(--paper-card);
+    color:var(--ink);
+  }
+  #filter:focus{outline:none; border-color:var(--clay);}
+  #filter::placeholder{color:#9aa6b0;}
+
+  /* ---------- TREE / TABLE ---------- */
+  .category{
+    margin-bottom:6px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--paper-card);
+    overflow:hidden;
+  }
+  .category + .category{margin-top:14px;}
+
+  .cat-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:13px 18px;
+    background:#fbf9f4;
+    border-bottom:1px solid var(--line);
+    cursor:pointer;
+    user-select:none;
+  }
+  .cat-head .chev{
+    width:9px;
+    height:9px;
+    border-right:1.5px solid var(--ink-soft);
+    border-bottom:1.5px solid var(--ink-soft);
+    transform:rotate(-45deg);
+    transition:transform .15s;
+    flex-shrink:0;
+  }
+  .category.collapsed .cat-head .chev{transform:rotate(45deg);}
+  .cat-head h2{
+    font-size:14.5px;
+    font-weight:700;
+    color:var(--navy);
+    margin:0;
+    letter-spacing:-.005em;
+  }
+  .cat-head .count{
+    font-size:12px;
+    color:var(--ink-soft);
+    font-weight:500;
+    margin-left:auto;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+  }
+  .category.collapsed table{display:none;}
+
+  thead th{
+    text-align:left;
+    font-size:10.5px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+    padding:10px 18px 8px;
+    border-bottom:1px solid var(--line);
+  }
+  thead th.col-format{width:130px;}
+  thead th.col-status{width:130px;}
+  thead th.col-link{width:90px;}
+
+  tbody tr{
+    border-bottom:1px solid var(--line);
+  }
+  tbody tr:last-child{border-bottom:none;}
+  tbody tr:hover{background:#faf8f2;}
+
+  td{
+    padding:13px 18px;
+    font-size:13.5px;
+    vertical-align:top;
+  }
+  td.name b{
+    display:block;
+    color:var(--ink);
+    font-weight:600;
+    font-size:14px;
+    margin-bottom:3px;
+  }
+  td.name span{
+    display:block;
+    color:var(--ink-soft);
+    font-size:12.5px;
+    line-height:1.5;
+    max-width:420px;
+  }
+
+  .fmt{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size:12px;
+    font-weight:600;
+    padding:3px 9px;
+    border-radius:20px;
+  }
+  .fmt.page{background:var(--ok-soft); color:var(--ok);}
+  .fmt.video{background:#e6edf5; color:#3b5f88;}
+
+  .status{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    font-weight:600;
+    color:var(--ink-soft);
+  }
+  .status .dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+  .status.done{color:var(--ok);}
+  .status.partial{color:var(--amber);}
+  .status.todo{color:#b0392f;}
+
+  .link-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--clay);
+    text-decoration:none;
+    padding:5px 10px;
+    border:1px solid var(--clay-soft);
+    border-radius:6px;
+    background:var(--clay-soft);
+    white-space:nowrap;
+  }
+  .link-btn:hover{background:var(--clay); color:#fff; border-color:var(--clay);}
+  .link-btn svg{width:11px;height:11px;}
+
+  .link-btn.muted{
+    color:var(--ink-soft);
+    border-color:var(--line);
+    background:transparent;
+  }
+  .link-btn.muted:hover{background:var(--navy-soft); color:#fff; border-color:var(--navy-soft);}
+
+  .hidden-row{display:none !important;}
+
+  footer.foot{
+    max-width:1100px;
+    margin:26px auto 0;
+    padding:0 40px 50px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:760px){
+    header.masthead{padding:22px 20px;}
+    .shell{padding:26px 20px 50px;}
+    thead{display:none;}
+    table, tbody, tr, td{display:block; width:100%;}
+    tbody tr{padding:12px 4px; border-bottom:1px solid var(--line);}
+    td{padding:4px 14px;}
+    td.name{padding-top:10px;}
+    .link-btn{margin-top:6px;}
+    footer.foot{padding:0 20px 40px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <div class="masthead-eyebrow">OPERATIONS DOCUMENTATION</div>
+      <h1>SOP Index</h1>
+    </div>
+    <div class="masthead-meta">
+      <div><strong>Colliers Catering</strong></div>
+      <div>colliers.net.au</div>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <div class="intro">
+    <p>Every documented process for Colliers Catering, in one place. Some are written pages with screenshots, some are Loom walkthroughs only — both are linked below.</p>
+    <div class="stats" id="stats">
+      <div><b id="stat-total">4</b>SOPs</div>
+      <div><b id="stat-page">3</b>Written pages</div>
+      <div><b id="stat-video">1</b>Video only</div>
+    </div>
+  </div>
+
+  <div class="search-row">
+    <input type="text" id="filter" placeholder="Filter by name, category, or format…">
+  </div>
+
+  <div id="tree">
+
+    <!-- CATEGORY: Website Enquiries -->
+    <div class="category" data-category="Website Enquiries">
+      <div class="cat-head">
+        <span class="chev"></span>
+        <h2>Website Enquiries</h2>
+        <span class="count">2 SOPs</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-name">SOP</th>
+            <th class="col-format">Format</th>
+            <th class="col-status">Status</th>
+            <th class="col-link">Open</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-search="get my quote form enquiry sales pipeline website enquiries page">
+            <td class="name">
+              <b>"Get my quote" form enquiry</b>
+              <span>What happens from form submit through to Lyn replying and moving the opportunity to Contacted.</span>
+            </td>
+            <td><span class="fmt page">▤ Page</span></td>
+            <td><span class="status done"><span class="dot"></span>Documented</span></td>
+            <td>
+              <a class="link-btn" href="colliers-catering-enquiry-sop.html" target="_blank" rel="noopener">
+                Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
+              </a>
+            </td>
+          </tr>
+          <tr data-search="chat widget enquiry existing customer high mid low value website enquiries page">
+            <td class="name">
+              <b>Chat widget enquiry</b>
+              <span>New leads and existing customers messaging the site widget, and the notification/reply flow.</span>
+            </td>
+            <td><span class="fmt page">▤ Page</span></td>
+            <td><span class="status done"><span class="dot"></span>Documented</span></td>
+            <td>
+              <a class="link-btn" href="colliers-catering-chat-widget-sop.html" target="_blank" rel="noopener">
+                Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CATEGORY: Integrations -->
+    <div class="category" data-category="Integrations">
+      <div class="cat-head">
+        <span class="chev"></span>
+        <h2>Integrations</h2>
+        <span class="count">1 SOP</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-name">SOP</th>
+            <th class="col-format">Format</th>
+            <th class="col-status">Status</th>
+            <th class="col-link">Open</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-search="flex ghl integration google apps script no zapier orders sync integrations video page">
+            <td class="name">
+              <b>Flex ↔ GHL sync via Google Apps Script</b>
+              <span>Syncs Flex orders into GoHighLevel without Zapier — run through Google Apps Script instead.</span>
+            </td>
+            <td><span class="fmt page">▤ Page</span> <span class="fmt video" style="margin-top:4px;">▶ Video</span></td>
+            <td><span class="status done"><span class="dot"></span>Documented</span></td>
+            <td style="display:flex; flex-direction:column; gap:6px;">
+              <a class="link-btn" href="colliers-catering-flex-ghl-integration.html" target="_blank" rel="noopener">
+                Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
+              </a>
+              <a class="link-btn muted" href="https://www.loom.com/share/e11a05caa3774129b4909a9cb0b86730" target="_blank" rel="noopener">
+                Watch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CATEGORY: General CRM Usage -->
+    <div class="category" data-category="General CRM Usage">
+      <div class="cat-head">
+        <span class="chev"></span>
+        <h2>General CRM Usage</h2>
+        <span class="count">1 SOP</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-name">SOP</th>
+            <th class="col-format">Format</th>
+            <th class="col-status">Status</th>
+            <th class="col-link">Open</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-search="managing leads phone mobile app crm general usage video">
+            <td class="name">
+              <b>Managing leads from your phone</b>
+              <span>Using the GoHighLevel mobile app to view, reply to, and manage leads on the go.</span>
+            </td>
+            <td><span class="fmt video">▶ Video</span></td>
+            <td><span class="status partial"><span class="dot"></span>Video only</span></td>
+            <td>
+              <a class="link-btn muted" href="https://www.loom.com/share/7baf72001965450cb954660cae8fc9df" target="_blank" rel="noopener">
+                Watch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<footer class="foot">Colliers Catering — internal SOP index. New processes get added here as they're documented.</footer>
+
+<script>
+  // Collapse/expand categories
+  document.querySelectorAll('.cat-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.closest('.category').classList.toggle('collapsed');
+    });
+  });
+
+  // Filter
+  const filterInput = document.getElementById('filter');
+  const rows = document.querySelectorAll('tbody tr');
+  const categories = document.querySelectorAll('.category');
+
+  filterInput.addEventListener('input', () => {
+    const q = filterInput.value.trim().toLowerCase();
+
+    categories.forEach(cat => {
+      let visibleCount = 0;
+      const catName = cat.dataset.category.toLowerCase();
+      cat.querySelectorAll('tbody tr').forEach(row => {
+        const haystack = row.dataset.search + ' ' + catName;
+        const match = q === '' || haystack.includes(q);
+        row.classList.toggle('hidden-row', !match);
+        if(match) visibleCount++;
+      });
+      cat.style.display = visibleCount === 0 ? 'none' : '';
+      if(q !== '' && visibleCount > 0){
+        cat.classList.remove('collapsed');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
