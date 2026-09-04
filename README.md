@@ -14,6 +14,8 @@ Internal operations documentation, published as static pages.
 - `free-tasting-experience-email-notifications-video.html` - Free Tasting experience and email notifications video tutorial
 - `find-inactive-customers-sop.html` - Find inactive customers written SOP
 - `find-inactive-customers-video.html` - Find inactive customers video tutorial
+- `crm-lead-management-sop.html` - CRM lead management and automation written SOP
+- `crm-lead-management-video.html` - CRM lead management and automation video tutorial
 
 ## Deploying with GitHub Pages
 
