@@ -12,6 +12,8 @@ Internal operations documentation, published as static pages.
 - `free-tasting-booking-video.html` - Free Tasting booking link video tutorial
 - `free-tasting-experience-email-notifications-sop.html` - Free Tasting experience and email notifications written SOP
 - `free-tasting-experience-email-notifications-video.html` - Free Tasting experience and email notifications video tutorial
+- `find-inactive-customers-sop.html` - Find inactive customers written SOP
+- `find-inactive-customers-video.html` - Find inactive customers video tutorial
 
 ## Deploying with GitHub Pages
 
