@@ -1,772 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOP Index — Colliers Catering</title>
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy-deep: #0d2b46;
-    --navy: #143c60;
-    --navy-soft: #53708c;
-    --paper: #f7fafc;
-    --paper-card: #ffffff;
-    --ink: #10263b;
-    --ink-soft: #6f8296;
-    --line: #d8e4ee;
-    --clay: #c9622d;
-    --clay-soft: #f7e5d9;
-    --blue-soft: #e7f0f8;
-    --ok: #4f7a5c;
-    --ok-soft: #e7efe6;
-    --amber: #a5760f;
-    --amber-soft: #f4e9d3;
-  }
-
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Inter', -apple-system, sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  header.masthead{
-    background:#fff;
-    color:var(--ink);
-    border-bottom:1px solid var(--line);
-  }
-  .top-strip{
-    background:var(--navy-deep);
-    color:#aac0d5;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:.01em;
-    text-align:center;
-    padding:8px 20px;
-  }
-  .masthead-inner{
-    max-width:1100px;
-    margin:0 auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:24px;
-    flex-wrap:wrap;
-    padding:18px 40px;
-  }
-  .brand-block{
-    display:flex;
-    align-items:center;
-    gap:14px;
-  }
-  .brand-mark{
-    width:54px;
-    height:54px;
-    border-radius:50%;
-    border:1px solid var(--line);
-    box-shadow:0 4px 14px rgba(13,43,70,.08);
-  }
-  .masthead-eyebrow{
-    color:var(--navy-soft);
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:.08em;
-    margin-bottom:5px;
-    text-transform:uppercase;
-    opacity:.85;
-  }
-  h1{
-    font-family:'Libre Baskerville', Georgia, serif;
-    font-weight:700;
-    font-size:28px;
-    letter-spacing:0;
-    margin:0;
-    color:var(--navy-deep);
-  }
-  .masthead-meta{
-    text-align:right;
-    font-size:12.5px;
-    color:var(--ink-soft);
-    line-height:1.6;
-  }
-  .masthead-meta strong{color:var(--navy-deep);font-weight:800;}
-  .masthead-actions{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-
-  .shell{
-    max-width:1100px;
-    margin:0 auto;
-    padding:46px 40px 76px;
-  }
-
-  .intro{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-bottom:26px;
-  }
-  .intro p{
-    margin:0;
-    font-size:15px;
-    color:var(--ink-soft);
-    max-width:610px;
-    line-height:1.65;
-  }
-
-  .stats{
-    display:flex;
-    gap:22px;
-    font-size:12.5px;
-    color:var(--ink-soft);
-  }
-  .stats b{
-    color:var(--navy);
-    font-size:18px;
-    display:block;
-    font-weight:800;
-  }
-
-  .search-row{
-    margin-bottom:22px;
-  }
-  #filter{
-    width:100%;
-    max-width:420px;
-    padding:12px 14px;
-    border:1px solid var(--line);
-    border-radius:4px;
-    font-family:'Inter',sans-serif;
-    font-size:14px;
-    background:var(--paper-card);
-    color:var(--ink);
-  }
-  #filter:focus{outline:none; border-color:var(--clay);}
-  #filter::placeholder{color:#9aa6b0;}
-
-  /* ---------- TREE / TABLE ---------- */
-  .category{
-    margin-bottom:8px;
-    border:1px solid var(--line);
-    border-radius:4px;
-    background:var(--paper-card);
-    overflow:hidden;
-    box-shadow:0 8px 24px rgba(13,43,70,.04);
-  }
-  .category + .category{margin-top:16px;}
-
-  .cat-head{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:16px 20px;
-    background:#fff;
-    border-bottom:1px solid var(--line);
-    cursor:pointer;
-    user-select:none;
-  }
-  .cat-head .chev{
-    width:9px;
-    height:9px;
-    border-right:1.5px solid var(--ink-soft);
-    border-bottom:1.5px solid var(--ink-soft);
-    transform:rotate(-45deg);
-    transition:transform .15s;
-    flex-shrink:0;
-  }
-  .category.collapsed .cat-head .chev{transform:rotate(45deg);}
-  .cat-head h2{
-    font-size:15px;
-    font-weight:800;
-    color:var(--navy);
-    margin:0;
-    letter-spacing:.01em;
-  }
-  .cat-head .count{
-    font-size:12px;
-    color:var(--ink-soft);
-    font-weight:500;
-    margin-left:auto;
-  }
-
-  table{
-    width:100%;
-    border-collapse:collapse;
-  }
-  .category.collapsed table{display:none;}
-
-  thead th{
-    text-align:left;
-    font-size:11px;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    color:var(--ink-soft);
-    padding:11px 20px 9px;
-    border-bottom:1px solid var(--line);
-    background:#f9fbfd;
-  }
-  thead th.col-format{width:130px;}
-  thead th.col-status{width:130px;}
-  thead th.col-link{width:90px;}
-
-  tbody tr{
-    border-bottom:1px solid var(--line);
-  }
-  tbody tr:last-child{border-bottom:none;}
-  tbody tr:hover{background:#faf8f2;}
-
-  td{
-    padding:15px 20px;
-    font-size:14px;
-    vertical-align:top;
-  }
-  td.name b{
-    display:block;
-    color:var(--ink);
-    font-weight:800;
-    font-size:14.5px;
-    margin-bottom:5px;
-  }
-  td.name span{
-    display:block;
-    color:var(--ink-soft);
-    font-size:13px;
-    line-height:1.5;
-    max-width:520px;
-  }
-
-  .fmt{
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-    font-size:12px;
-    font-weight:800;
-    padding:3px 9px;
-    border-radius:999px;
-  }
-  .fmt.page{background:var(--ok-soft); color:var(--ok);}
-  .fmt.video{background:#e6edf5; color:#3b5f88;}
-
-  .status{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    font-size:12px;
-    font-weight:800;
-    color:var(--ink-soft);
-  }
-  .status .dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
-  .status.done{color:var(--ok);}
-  .status.partial{color:var(--amber);}
-  .status.todo{color:#b0392f;}
-
-  .link-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-    font-size:12.5px;
-    font-weight:800;
-    color:var(--clay);
-    text-decoration:none;
-    padding:8px 11px;
-    border:1px solid var(--clay-soft);
-    border-radius:4px;
-    background:var(--clay-soft);
-    white-space:nowrap;
-  }
-  .link-btn:hover{background:var(--clay); color:#fff; border-color:var(--clay);}
-  .link-btn svg{width:11px;height:11px;}
-
-  .link-btn.muted{
-    color:var(--ink-soft);
-    border-color:var(--line);
-    background:transparent;
-  }
-  .link-btn.muted:hover{background:var(--navy-soft); color:#fff; border-color:var(--navy-soft);}
-
-  .hidden-row{display:none !important;}
-
-  .recommendations{
-    background:var(--blue-soft);
-    border-top:1px solid #d5e5f2;
-    border-bottom:1px solid #d5e5f2;
-    margin:34px -40px 30px;
-    padding:34px 40px;
-  }
-  .recommendations-inner{
-    max-width:1100px;
-    margin:0 auto;
-  }
-  .recommendations h2{
-    font-family:'Libre Baskerville', Georgia, serif;
-    font-size:27px;
-    color:var(--navy-deep);
-    margin:0 0 8px;
-    text-align:center;
-  }
-  .recommendations .rec-intro{
-    color:var(--navy-soft);
-    text-align:center;
-    margin:0 auto 22px;
-    max-width:660px;
-    line-height:1.6;
-  }
-  .rec-grid{
-    display:grid;
-    grid-template-columns:repeat(3, minmax(0, 1fr));
-    gap:14px;
-  }
-  .rec-card{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:4px;
-    padding:18px 18px 16px;
-    min-height:150px;
-  }
-  .rec-card .priority{
-    color:var(--clay);
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    margin-bottom:8px;
-  }
-  .rec-card h3{
-    margin:0 0 8px;
-    font-size:15px;
-    color:var(--navy);
-  }
-  .rec-card p{
-    margin:0;
-    color:var(--ink-soft);
-    font-size:13px;
-    line-height:1.55;
-  }
-  .rec-card .formats{
-    display:flex;
-    gap:6px;
-    flex-wrap:wrap;
-    margin-top:13px;
-  }
-
-  footer.foot{
-    max-width:1100px;
-    margin:34px auto 0;
-    padding:0 40px 50px;
-    font-size:12px;
-    color:var(--ink-soft);
-  }
-
-  @media (max-width:760px){
-    .top-strip{text-align:left;}
-    .masthead-inner{padding:16px 20px; align-items:flex-start;}
-    .masthead-meta{text-align:left;}
-    .brand-mark{width:46px;height:46px;}
-    .shell{padding:26px 20px 50px;}
-    .recommendations{margin:28px -20px 24px; padding:28px 20px;}
-    .rec-grid{grid-template-columns:1fr;}
-    thead{display:none;}
-    table, tbody, tr, td{display:block; width:100%;}
-    tbody tr{padding:12px 4px; border-bottom:1px solid var(--line);}
-    td{padding:4px 14px;}
-    td.name{padding-top:10px;}
-    .link-btn{margin-top:6px;}
-    footer.foot{padding:0 20px 40px;}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SOP Library | Colliers Catering</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#16365c;--navy-hover:#0f2745;--ink:#1b2b3f;--body:#5a6b7d;--muted:#7a8490;--faint:#9aa3ad;--orange:#c4622d;--line:#eef0f3;--pale:#f5f8fb;--light:#e6edf6}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#fff;color:var(--ink);font:400 16px/1.5 'DM Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:var(--navy)}
+    a:hover{color:var(--orange)}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    .container{max-width:1200px;margin:0 auto;padding:0 32px}
+    .site-nav{border-bottom:1px solid var(--line)}
+    .nav-inner{min-height:80px;display:flex;align-items:center;gap:14px}
+    .nav-inner img{width:40px;height:40px;object-fit:contain}
+    .wordmark{font-weight:600;font-size:15px;color:var(--navy);white-space:nowrap}
+    .nav-links{margin-left:auto;display:flex;gap:28px}
+    .nav-links a{text-decoration:none;color:#4a5a6c;font-size:14px}
+    .nav-links a:hover{color:var(--orange)}
+    .hero{padding-top:92px;padding-bottom:88px;text-align:center;display:flex;flex-direction:column;align-items:center}
+    h1,h2{font-family:Fraunces,Georgia,serif;font-weight:400;color:var(--navy)}
+    h1{font-size:60px;line-height:1.08;margin:0 0 24px}
+    .hero>p{font-size:18px;line-height:28px;color:var(--body);max-width:600px;margin:0 0 28px}
+    .search-wrap{width:100%;max-width:620px;height:60px;display:flex;align-items:center;gap:13px;padding:0 20px;border:1px solid #e3e7ec;border-radius:999px;box-shadow:0 12px 32px -16px rgba(22,54,92,.25);color:var(--navy)}
+    .search-wrap:focus-within{border-color:var(--navy);outline:2px solid var(--light)}
+    .search-wrap img{width:18px;height:18px;flex:none}
+    #search{border:0;outline:0;min-width:0;flex:1;color:var(--ink);background:transparent;font-size:16px}
+    #search::placeholder{color:var(--muted)}
+    #clear-search{border:0;background:none;color:var(--muted);font-size:13px;padding:8px}
+    #clear-search[hidden],[hidden]{display:none!important}
+    .chips{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .chip{border:0;border-radius:999px;background:#f3f6fa;color:var(--navy);padding:9px 16px;font-size:14px}
+    .chip:hover{background:var(--light)}
+    h2{font-size:36px;line-height:42px;margin:0}
+    .section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:36px}
+    .text-link{color:var(--orange);text-decoration:none;font-size:15px;font-weight:500;white-space:nowrap}
+    .text-link:hover{text-decoration:underline}
+    .area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px 24px}
+    .area-card{text-decoration:none;color:inherit;min-width:0}
+    .area-card:hover .area-name{color:var(--orange)}
+    .area-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top left;border-radius:8px;background:#f3f6fa;border:1px solid var(--line)}
+    .area-card img.logo-image{object-fit:contain;padding:36px;background:#f3f6fa}
+    .area-name{display:block;font-size:19px;font-weight:500;color:var(--navy);margin-top:17px}
+    .area-count{display:block;font-size:14px;color:var(--faint);margin-top:4px}
+    #areas{padding-bottom:120px}
+    .video-band{background:var(--pale);padding:96px 0}
+    .video-layout{display:flex;flex-wrap:wrap;align-items:center;gap:40px}
+    .video-cover{flex:1 1 340px;max-width:560px;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:8px;border:1px solid #dfe7f0;background:var(--light)}
+    .video-copy{flex:1 1 360px;min-width:0}
+    .video-copy>p{font-size:16px;color:var(--body);margin:12px 0 28px}
+    .video-item{display:flex;align-items:center;gap:16px;padding:15px 0;border-top:1px solid #e3e9f0;text-decoration:none;color:var(--ink);font-size:15px;font-weight:500}
+    .video-item:hover{color:var(--orange)}
+    .play-circle{width:32px;height:32px;border-radius:50%;background:#fff;color:var(--orange);display:grid;place-items:center;flex:none}
+    .video-item .video-title{flex:1;min-width:0}
+    .video-area{font-size:12px;color:var(--muted);font-weight:400;text-align:right}
+    .all-sops{max-width:1000px;padding-top:116px;padding-bottom:128px}
+    .all-sops>h2{margin-bottom:68px}
+    .area-group{display:flex;flex-wrap:wrap;gap:24px 56px;margin-bottom:64px;scroll-margin-top:36px}
+    .area-group:last-child{margin-bottom:0}
+    .group-heading{flex:0 1 220px}
+    .group-heading h3{font-size:20px;line-height:26px;font-weight:500;color:var(--navy);margin:0}
+    .group-heading span{display:block;color:var(--faint);font-size:14px;margin-top:5px}
+    .group-rows{flex:1 1 480px;min-width:0}
+    .sop-row{display:flex;align-items:center;flex-wrap:wrap;gap:14px 28px;padding:20px 0;border-top:1px solid var(--line)}
+    .sop-detail{flex:1 1 290px;min-width:0}
+    .sop-detail h4{margin:0 0 4px;font-size:16px;line-height:23px;font-weight:500;color:var(--ink)}
+    .sop-detail p{margin:0;color:var(--muted);font-size:14px;line-height:22px}
+    .actions{display:flex;flex-wrap:wrap;gap:8px}
+    .action{height:38px;display:inline-flex;align-items:center;gap:8px;padding:0 16px;border-radius:999px;text-decoration:none;white-space:nowrap;font-size:14px;font-weight:500}
+    .action:hover{color:inherit}
+    .action.read{background:var(--light);color:var(--navy)}
+    .action.read:hover{background:#d6e1ee}
+    .doc-icon{width:14px;height:14px;display:block}
+    .action.watch{background:var(--navy);color:#fff;padding-left:8px}
+    .action.watch:hover{background:var(--navy-hover);color:#fff}
+    .action.watch .play-circle{width:22px;height:22px;color:var(--navy)}
+    .action.watch .play-circle svg{width:13px;height:13px}
+    .results{max-width:880px;padding-bottom:120px}
+    .result-count{margin:0 0 16px;font-size:14px;color:var(--muted)}
+    .result-area{color:var(--orange);font-size:12px;font-weight:500;display:block;margin-bottom:5px}
+    .results .sop-row{border-top:0;border-bottom:1px solid var(--line)}
+    .site-footer{border-top:1px solid var(--line)}
+    .footer-inner{padding-top:28px;padding-bottom:28px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--faint);font-size:13px}
+    @media(max-width:800px){.video-cover{max-width:none}.video-layout{align-items:flex-start}}
+    @media(max-width:640px){.container{padding-left:20px;padding-right:20px}.nav-inner{min-height:72px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}.nav-links{gap:16px;width:100%;margin-left:54px}.hero{padding-top:68px;padding-bottom:72px}h1{font-size:42px}h2{font-size:32px;line-height:38px}.section-head{align-items:flex-start;flex-wrap:wrap}.area-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}#areas{padding-bottom:84px}.video-band{padding:72px 0}.all-sops{padding-top:84px;padding-bottom:90px}.all-sops>h2{margin-bottom:44px}.area-group{gap:18px;margin-bottom:48px}.group-heading{flex-basis:100%}.video-area{max-width:90px}.sop-detail{flex-basis:100%}}
+    @media(max-width:390px){.area-grid{grid-template-columns:1fr}.area-card img{max-height:210px}.nav-links{margin-left:0}h1{font-size:38px}}
+  </style>
 </head>
 <body>
-
-<header class="masthead">
-  <div class="top-strip">Delivering 7 days a week &nbsp;&nbsp; Order by 2pm for next-day delivery across Sydney &nbsp;&nbsp; Internal CRM + GHL SOP Library</div>
-  <div class="masthead-inner">
-    <div class="brand-block">
-      <img class="brand-mark" src="assets/apple-icon-180x180.png" alt="Colliers Catering">
-      <div>
-        <div class="masthead-eyebrow">Operations Documentation</div>
-        <h1>SOP Index</h1>
-      </div>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <img src="assets/apple-icon-180x180.png" alt="Colliers Catering">
+      <span class="wordmark">SOP Library</span>
+      <div class="nav-links"><a href="#areas">Areas</a><a href="#videos">Videos</a><a href="#all">All SOPs</a></div>
     </div>
-    <div class="masthead-actions">
-      <div class="masthead-meta">
-        <div><strong>Colliers Catering</strong></div>
-        <div>colliers.net.au</div>
-      </div>
+  </nav>
+
+  <header class="container hero">
+    <h1>How do we do this?</h1>
+    <p>Step-by-step guides and screen walkthroughs for the Colliers team.</p>
+    <label class="search-wrap" for="search">
+      <img src="assets/search.svg" alt="">
+      <input id="search" type="search" placeholder="Search SOPs" autocomplete="off" aria-label="Search SOPs">
+      <button id="clear-search" type="button" hidden>Clear</button>
+    </label>
+    <div class="chips" aria-label="Quick searches"><button class="chip" data-query="quote" type="button">Quote form</button><button class="chip" data-query="tasting" type="button">Free Tasting</button><button class="chip" data-query="flex" type="button">Flex sync</button><button class="chip" data-query="pipeline" type="button">Pipeline</button></div>
+  </header>
+
+  <main>
+    <section id="search-results" class="container results" hidden aria-live="polite"><p id="result-count" class="result-count"></p><div id="result-list"></div></section>
+    <div id="browse-content">
+      <section id="areas" class="container">
+        <div class="section-head"><h2>Browse by area</h2><a class="text-link" href="#all">View all SOPs &rarr;</a></div>
+        <div class="area-grid">
+          <a class="area-card" href="#website"><img src="assets/area-website.jpg" alt="Colliers website quote form" loading="lazy"><span class="area-name">Website Enquiries</span><span class="area-count">2 guides</span></a>
+          <a class="area-card" href="#integrations"><img src="assets/area-integrations.jpg" alt="A contact record in GoHighLevel" loading="lazy"><span class="area-name">Integrations</span><span class="area-count">1 guide</span></a>
+          <a class="area-card" href="#tastings"><img class="logo-image" src="assets/apple-icon-180x180.png" alt="Colliers Catering logo" loading="lazy"><span class="area-name">Free Tasting Bookings</span><span class="area-count">2 guides</span></a>
+          <a class="area-card" href="#leads"><img src="assets/area-crm.jpg" alt="Colliers website chat widget" loading="lazy"><span class="area-name">CRM Lead Management</span><span class="area-count">1 guide</span></a>
+          <a class="area-card" href="#reengagement"><img src="assets/area-integrations.jpg" alt="GoHighLevel contact record" loading="lazy"><span class="area-name">Customer Re-engagement</span><span class="area-count">1 guide</span></a>
+          <a class="area-card" href="#mobile"><img class="logo-image" src="assets/apple-icon-180x180.png" alt="Colliers Catering logo" loading="lazy"><span class="area-name">General CRM Usage</span><span class="area-count">1 guide</span></a>
+        </div>
+      </section>
+
+      <section id="videos" class="video-band" aria-labelledby="videos-title">
+        <div class="container video-layout">
+          <img class="video-cover" src="assets/area-crm.jpg" alt="GoHighLevel screen walkthrough preview" loading="lazy">
+          <div class="video-copy"><h2 id="videos-title">Watch it done</h2><p>Screen walkthroughs you can follow along with.</p>
+            <a class="video-item" href="https://www.loom.com/share/e11a05caa3774129b4909a9cb0b86730"><span class="play-circle" aria-hidden="true">&#9654;</span><span class="video-title">How Flex orders appear in GHL</span><span class="video-area">Integrations</span></a>
+            <a class="video-item" href="free-tasting-booking-video.html"><span class="play-circle" aria-hidden="true">&#9654;</span><span class="video-title">Send a customer the free tasting booking link</span><span class="video-area">Free Tasting</span></a>
+            <a class="video-item" href="free-tasting-experience-email-notifications-video.html"><span class="play-circle" aria-hidden="true">&#9654;</span><span class="video-title">Review a free tasting booking and its notifications</span><span class="video-area">Free Tasting</span></a>
+            <a class="video-item" href="crm-lead-management-video.html"><span class="play-circle" aria-hidden="true">&#9654;</span><span class="video-title">Manage a lead from enquiry to booking in GHL</span><span class="video-area">CRM Leads</span></a>
+            <a class="video-item" href="find-inactive-customers-video.html"><span class="play-circle" aria-hidden="true">&#9654;</span><span class="video-title">Find customers with no orders in 45+ days</span><span class="video-area">Re-engagement</span></a>
+            <a class="video-item" href="https://www.loom.com/share/7baf72001965450cb954660cae8fc9df"><span class="play-circle" aria-hidden="true">&#9654;</span><span class="video-title">Reply to leads in the GHL mobile app</span><span class="video-area">CRM Usage</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section id="all" class="container all-sops"><h2>All SOPs</h2>
+        <div id="website" class="area-group" data-area="Website Enquiries"><div class="group-heading"><h3>Website Enquiries</h3><span>2 guides</span></div><div class="group-rows">
+          <article class="sop-row" data-keywords="quote form get my quote website lead lyn contacted"><div class="sop-detail"><h4>Handle a new Get My Quote enquiry in GHL</h4><p>See how a quote form creates a contact, alerts the team, and moves through the sales pipeline.</p></div><div class="actions"><a class="action read" href="colliers-catering-enquiry-sop.html"><img class="doc-icon" src="assets/file-text.svg" alt="">Read guide</a></div></article>
+          <article class="sop-row" data-keywords="chat widget website enquiry respond lead customer"><div class="sop-detail"><h4>Respond to a website chat enquiry in GHL</h4><p>Review the chat message, automated replies, team notification, and next steps in GHL.</p></div><div class="actions"><a class="action read" href="colliers-catering-chat-widget-sop.html"><img class="doc-icon" src="assets/file-text.svg" alt="">Read guide</a></div></article>
+        </div></div>
+        <div id="integrations" class="area-group" data-area="Integrations"><div class="group-heading"><h3>Integrations</h3><span>1 guide</span></div><div class="group-rows">
+          <article class="sop-row" data-keywords="flex ghl sync google apps script orders integration"><div class="sop-detail"><h4>Understand how Flex orders sync to GHL</h4><p>Follow the Flex-to-GHL order sync, including the Google Apps Script workflow and logs.</p></div><div class="actions"><a class="action read" href="colliers-catering-flex-ghl-integration.html"><img class="doc-icon" src="assets/file-text.svg" alt="">Read guide</a><a class="action watch" href="https://www.loom.com/share/e11a05caa3774129b4909a9cb0b86730"><span class="play-circle" aria-hidden="true">&#9654;</span>Watch video</a></div></article>
+        </div></div>
+        <div id="tastings" class="area-group" data-area="Free Tasting Bookings"><div class="group-heading"><h3>Free Tasting Bookings</h3><span>2 guides</span></div><div class="group-rows">
+          <article class="sop-row" data-keywords="free tasting booking link book tasting tag email contact"><div class="sop-detail"><h4>Send a customer the free tasting booking link</h4><p>Apply the book tasting tag to email the customer a link to the live booking calendar.</p></div><div class="actions"><a class="action read" href="free-tasting-booking-sop.html"><img class="doc-icon" src="assets/file-text.svg" alt="">Read guide</a><a class="action watch" href="free-tasting-booking-video.html"><span class="play-circle" aria-hidden="true">&#9654;</span>Watch video</a></div></article>
+          <article class="sop-row" data-keywords="free tasting customer booking confirmation email internal notification calendar appointment owner"><div class="sop-detail"><h4>Review a free tasting booking and its notifications</h4><p>Check customer confirmation, internal email, calendar entry, and appointment owner.</p></div><div class="actions"><a class="action read" href="free-tasting-experience-email-notifications-sop.html"><img class="doc-icon" src="assets/file-text.svg" alt="">Read guide</a><a class="action watch" href="free-tasting-experience-email-notifications-video.html"><span class="play-circle" aria-hidden="true">&#9654;</span>Watch video</a></div></article>
+        </div></div>
+        <div id="leads" class="area-group" data-area="CRM Lead Management"><div class="group-heading"><h3>CRM Lead Management</h3><span>1 guide</span></div><div class="group-rows">
+          <article class="sop-row" data-keywords="crm lead management sales pipeline quote sent contacted won lost automation conversations reactivation"><div class="sop-detail"><h4>Manage a lead from enquiry to booking in GHL</h4><p>Handle contact replies, pipeline stages, quote follow-ups, reactivation, and tasting workflows.</p></div><div class="actions"><a class="action read" href="crm-lead-management-sop.html"><img class="doc-icon" src="assets/file-text.svg" alt="">Read guide</a><a class="action watch" href="crm-lead-management-video.html"><span class="play-circle" aria-hidden="true">&#9654;</span>Watch video</a></div></article>
+        </div></div>
+        <div id="reengagement" class="area-group" data-area="Customer Re-engagement"><div class="group-heading"><h3>Customer Re-engagement</h3><span>1 guide</span></div><div class="group-rows">
+          <article class="sop-row" data-keywords="inactive customers 45 days latest order date filter reengagement follow up"><div class="sop-detail"><h4>Find customers with no orders in 45+ days</h4><p>Filter GHL contacts by Flex Latest Order Date and prepare a re-engagement list.</p></div><div class="actions"><a class="action read" href="find-inactive-customers-sop.html"><img class="doc-icon" src="assets/file-text.svg" alt="">Read guide</a><a class="action watch" href="find-inactive-customers-video.html"><span class="play-circle" aria-hidden="true">&#9654;</span>Watch video</a></div></article>
+        </div></div>
+        <div id="mobile" class="area-group" data-area="General CRM Usage"><div class="group-heading"><h3>General CRM Usage</h3><span>1 guide</span></div><div class="group-rows">
+          <article class="sop-row" data-keywords="mobile phone ghl app reply leads conversations"><div class="sop-detail"><h4>Reply to leads in the GHL mobile app</h4><p>View, reply to, and manage leads from your phone.</p></div><div class="actions"><a class="action watch" href="https://www.loom.com/share/7baf72001965450cb954660cae8fc9df"><span class="play-circle" aria-hidden="true">&#9654;</span>Watch video</a></div></article>
+        </div></div>
+      </section>
     </div>
-  </div>
-</header>
-
-<div class="shell">
-  <div class="intro">
-    <p>Every documented process for Colliers Catering, in one place. Some are written pages with screenshots, some are Loom walkthroughs only — both are linked below.</p>
-    <div class="stats" id="stats">
-      <div><b id="stat-total">12</b>SOPs</div>
-      <div><b id="stat-page">7</b>Written pages</div>
-      <div><b id="stat-video">6</b>Videos</div>
-    </div>
-  </div>
-
-  <div class="search-row">
-    <input type="text" id="filter" placeholder="Filter by name, category, or format…">
-  </div>
-
-  <section class="recommendations" aria-labelledby="recommended-sops">
-    <div class="recommendations-inner">
-      <h2 id="recommended-sops">Recommended SOPs to Create Next</h2>
-      <p class="rec-intro">Based on the GHL workflows already mapped in this project, these are the next training assets that would close the biggest process gaps.</p>
-      <div class="rec-grid">
-        <article class="rec-card">
-          <div class="priority">High priority</div>
-          <h3>Recovering failed Flex → GHL sync events</h3>
-          <p>Show how to read the sync events sheet, identify failed records, fix missing data, and safely rerun or manually repair a contact/company/order.</p>
-          <div class="formats"><span class="fmt page">▤ Written</span><span class="fmt video">▶ Video</span></div>
-        </article>
-        <article class="rec-card">
-          <div class="priority">High priority</div>
-          <h3>Quote Sent follow-up automation</h3>
-          <p>Document exactly when to move an opportunity to Quote Sent, how to enter the value, and what automated emails/SMS happen on days 1, 3, 8, and 15.</p>
-          <div class="formats"><span class="fmt page">▤ Written</span><span class="fmt video">▶ Video</span></div>
-        </article>
-        <article class="rec-card">
-          <div class="priority">Medium priority</div>
-          <h3>Apollo prospect import and customer cross-check</h3>
-          <p>Train the team on reviewing Apollo prospects, checking against Flex/customers, approving net-new leads, and sending them into GHL without duplicates.</p>
-          <div class="formats"><span class="fmt page">▤ Written</span><span class="fmt video">▶ Video</span></div>
-        </article>
-        <article class="rec-card">
-          <div class="priority">Medium priority</div>
-          <h3>Google Business Profile connection to GHL</h3>
-          <p>Capture the one-time setup steps, required Google permissions, and how to confirm reviews/messages are connected after access is granted.</p>
-          <div class="formats"><span class="fmt page">▤ Written</span></div>
-        </article>
-        <article class="rec-card">
-          <div class="priority">Medium priority</div>
-          <h3>Daily CRM housekeeping checklist</h3>
-          <p>A short VA routine for checking new enquiries, conversations, stale opportunities, tasting bookings, failed automations, and reactivation batches.</p>
-          <div class="formats"><span class="fmt page">▤ Written</span><span class="fmt video">▶ Video</span></div>
-        </article>
-        <article class="rec-card">
-          <div class="priority">Optional</div>
-          <h3>Lost lead and no-response cleanup</h3>
-          <p>Explain when a lead should be marked Lost, which tags should be applied, and how to avoid active prospects being closed too early.</p>
-          <div class="formats"><span class="fmt page">▤ Written</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <div id="tree">
-
-    <!-- CATEGORY: Website Enquiries -->
-    <div class="category" data-category="Website Enquiries">
-      <div class="cat-head">
-        <span class="chev"></span>
-        <h2>Website Enquiries</h2>
-        <span class="count">2 SOPs</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th class="col-name">SOP</th>
-            <th class="col-format">Format</th>
-            <th class="col-status">Status</th>
-            <th class="col-link">Open</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-search="get my quote form enquiry sales pipeline website enquiries page">
-            <td class="name">
-              <b>"Get my quote" form enquiry</b>
-              <span>What happens from form submit through to Lyn replying and moving the opportunity to Contacted.</span>
-            </td>
-            <td><span class="fmt page">▤ Page</span></td>
-            <td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td>
-              <a class="link-btn" href="colliers-catering-enquiry-sop.html">
-                Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-            </td>
-          </tr>
-          <tr data-search="chat widget enquiry existing customer high mid low value website enquiries page">
-            <td class="name">
-              <b>Chat widget enquiry</b>
-              <span>New leads and existing customers messaging the site widget, and the notification/reply flow.</span>
-            </td>
-            <td><span class="fmt page">▤ Page</span></td>
-            <td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td>
-              <a class="link-btn" href="colliers-catering-chat-widget-sop.html">
-                Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- CATEGORY: Integrations -->
-    <div class="category" data-category="Integrations">
-      <div class="cat-head">
-        <span class="chev"></span>
-        <h2>Integrations</h2>
-        <span class="count">1 SOP</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th class="col-name">SOP</th>
-            <th class="col-format">Format</th>
-            <th class="col-status">Status</th>
-            <th class="col-link">Open</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-search="flex ghl integration google apps script no zapier orders sync integrations video page">
-            <td class="name">
-              <b>Flex ↔ GHL sync via Google Apps Script</b>
-              <span>Syncs Flex orders into GoHighLevel without Zapier — run through Google Apps Script instead.</span>
-            </td>
-            <td><span class="fmt page">▤ Page</span> <span class="fmt video" style="margin-top:4px;">▶ Video</span></td>
-            <td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td style="display:flex; flex-direction:column; gap:6px;">
-              <a class="link-btn" href="colliers-catering-flex-ghl-integration.html">
-                Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-              <a class="link-btn muted" href="https://www.loom.com/share/e11a05caa3774129b4909a9cb0b86730" target="_blank" rel="noopener">
-                Watch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- CATEGORY: Free Tasting Bookings -->
-    <div class="category" data-category="Free Tasting Bookings">
-      <div class="cat-head">
-        <span class="chev"></span>
-        <h2>Free Tasting Bookings</h2>
-        <span class="count">4 SOPs</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th class="col-name">SOP</th>
-            <th class="col-format">Format</th>
-            <th class="col-status">Status</th>
-            <th class="col-link">Open</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-search="free tasting booking link book tasting tag ghl contact customer calendar written sop">
-            <td class="name">
-              <b>Send the Free Tasting booking link</b>
-              <span>Apply the <code>book tasting</code> tag in GHL so the customer automatically receives the tasting calendar link.</span>
-            </td>
-            <td><span class="fmt page">▤ Page</span></td>
-            <td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td>
-              <a class="link-btn" href="free-tasting-booking-sop.html">
-                Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-            </td>
-          </tr>
-          <tr data-search="free tasting booking link video tutorial book tasting tag ghl contact customer calendar">
-            <td class="name">
-              <b>Free Tasting booking link video tutorial</b>
-              <span>Screen walkthrough for sending the booking link from a customer contact profile.</span>
-            </td>
-            <td><span class="fmt video">▶ Video</span></td>
-            <td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td>
-              <a class="link-btn" href="free-tasting-booking-video.html">
-                Watch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-            </td>
-          </tr>
-          <tr data-search="free tasting experience email notifications customer confirmation internal team notification ghl calendar appointment owner written sop">
-            <td class="name">
-              <b>Free Tasting experience and email notifications</b>
-              <span>Customer booking flow, confirmation emails, internal notification, CRM sync, and staff assignment notes.</span>
-            </td>
-            <td><span class="fmt page">▤ Page</span></td>
-            <td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td>
-              <a class="link-btn" href="free-tasting-experience-email-notifications-sop.html">
-                Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-            </td>
-          </tr>
-          <tr data-search="free tasting experience email notifications video tutorial customer confirmation internal team notification ghl calendar appointment owner">
-            <td class="name">
-              <b>Free Tasting experience and email notifications video</b>
-              <span>Screen walkthrough of the customer booking experience, notification emails, and GHL appointment updates.</span>
-            </td>
-            <td><span class="fmt video">▶ Video</span></td>
-            <td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td>
-              <a class="link-btn" href="free-tasting-experience-email-notifications-video.html">
-                Watch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-            </td>
-          </tr>        </tbody>
-      </table>
-    </div>
-    <!-- CATEGORY: CRM Lead Management -->
-    <div class="category" data-category="CRM Lead Management">
-      <div class="cat-head">
-        <span class="chev"></span>
-        <h2>CRM Lead Management</h2>
-        <span class="count">2 SOPs</span>
-      </div>
-      <table><thead><tr><th class="col-name">SOP</th><th class="col-format">Format</th><th class="col-status">Status</th><th class="col-link">Open</th></tr></thead>
-        <tbody>
-          <tr data-search="crm lead management automation website quote form live chat conversations email sms sales pipeline quote sent inactive customers free tasting written sop">
-            <td class="name"><b>CRM Lead Management and Automation</b><span>Full CRM operating guide covering lead capture, responses, pipeline stages, contact fields, reactivation, and free tasting automations.</span></td>
-            <td><span class="fmt page">▤ Page</span></td><td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td><a class="link-btn" href="crm-lead-management-sop.html">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a></td>
-          </tr>
-          <tr data-search="crm lead management video tutorial automation website quote form live chat conversations sales pipeline inactive customers free tasting">
-            <td class="name"><b>CRM Lead Management video tutorial</b><span>Screen walkthrough of the full GoHighLevel CRM process and related automations.</span></td>
-            <td><span class="fmt video">▶ Video</span></td><td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td><a class="link-btn" href="crm-lead-management-video.html">Watch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- CATEGORY: Customer Re-engagement -->
-    <div class="category" data-category="Customer Re-engagement">
-      <div class="cat-head">
-        <span class="chev"></span>
-        <h2>Customer Re-engagement</h2>
-        <span class="count">2 SOPs</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th class="col-name">SOP</th>
-            <th class="col-format">Format</th>
-            <th class="col-status">Status</th>
-            <th class="col-link">Open</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-search="inactive customers follow up re-engagement flex latest order date 45 days contacts filter written sop">
-            <td class="name">
-              <b>Find inactive customers for follow-up</b>
-              <span>Filter contacts by Flex Latest Order Date to find customers who have not ordered in 45+ days.</span>
-            </td>
-            <td><span class="fmt page">▤ Page</span></td>
-            <td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td>
-              <a class="link-btn" href="find-inactive-customers-sop.html">
-                Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-            </td>
-          </tr>
-          <tr data-search="inactive customers video tutorial follow up re-engagement flex latest order date 45 days contacts filter">
-            <td class="name">
-              <b>Find inactive customers video tutorial</b>
-              <span>Screen walkthrough for filtering inactive customers and reviewing the follow-up list.</span>
-            </td>
-            <td><span class="fmt video">▶ Video</span></td>
-            <td><span class="status done"><span class="dot"></span>Documented</span></td>
-            <td>
-              <a class="link-btn" href="find-inactive-customers-video.html">
-                Watch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-
-
-    <!-- CATEGORY: General CRM Usage -->
-    <div class="category" data-category="General CRM Usage">
-      <div class="cat-head">
-        <span class="chev"></span>
-        <h2>General CRM Usage</h2>
-        <span class="count">1 SOP</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th class="col-name">SOP</th>
-            <th class="col-format">Format</th>
-            <th class="col-status">Status</th>
-            <th class="col-link">Open</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-search="managing leads phone mobile app crm general usage video">
-            <td class="name">
-              <b>Managing leads from your phone</b>
-              <span>Using the GoHighLevel mobile app to view, reply to, and manage leads on the go.</span>
-            </td>
-            <td><span class="fmt video">▶ Video</span></td>
-            <td><span class="status partial"><span class="dot"></span>Video only</span></td>
-            <td>
-              <a class="link-btn muted" href="https://www.loom.com/share/7baf72001965450cb954660cae8fc9df" target="_blank" rel="noopener">
-                Watch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div>
-</div>
-
-<footer class="foot">Colliers Catering — internal SOP index. New processes get added here as they're documented.</footer>
-
-<script>
-  // Collapse/expand categories
-  document.querySelectorAll('.cat-head').forEach(head => {
-    head.addEventListener('click', () => {
-      head.closest('.category').classList.toggle('collapsed');
-    });
-  });
-
-  // Filter
-  const filterInput = document.getElementById('filter');
-  const rows = document.querySelectorAll('tbody tr');
-  const categories = document.querySelectorAll('.category');
-
-  filterInput.addEventListener('input', () => {
-    const q = filterInput.value.trim().toLowerCase();
-
-    categories.forEach(cat => {
-      let visibleCount = 0;
-      const catName = cat.dataset.category.toLowerCase();
-      cat.querySelectorAll('tbody tr').forEach(row => {
-        const haystack = row.dataset.search + ' ' + catName;
-        const match = q === '' || haystack.includes(q);
-        row.classList.toggle('hidden-row', !match);
-        if(match) visibleCount++;
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><span>Colliers Catering &middot; Internal use</span><span>Woolloomooloo, Sydney</span></div></footer>
+  <script>
+    const search = document.getElementById('search');
+    const clear = document.getElementById('clear-search');
+    const browse = document.getElementById('browse-content');
+    const results = document.getElementById('search-results');
+    const resultList = document.getElementById('result-list');
+    const resultCount = document.getElementById('result-count');
+    const rows = [...document.querySelectorAll('.area-group .sop-row')];
+    function updateSearch(){
+      const query = search.value.trim().toLocaleLowerCase();
+      const searching = query.length > 0;
+      clear.hidden = !searching;
+      browse.hidden = searching;
+      results.hidden = !searching;
+      resultList.replaceChildren();
+      if(!searching) return;
+      const matches = rows.filter(row => {
+        const area = row.closest('.area-group').dataset.area;
+        return `${row.textContent} ${row.dataset.keywords} ${area}`.toLocaleLowerCase().includes(query);
       });
-      cat.style.display = visibleCount === 0 ? 'none' : '';
-      if(q !== '' && visibleCount > 0){
-        cat.classList.remove('collapsed');
+      resultCount.textContent = matches.length ? `${matches.length} ${matches.length === 1 ? 'result' : 'results'} for “${search.value.trim()}”` : `No SOPs match “${search.value.trim()}”.`;
+      for(const row of matches){
+        const copy = row.cloneNode(true);
+        const label = document.createElement('span');
+        label.className = 'result-area';
+        label.textContent = row.closest('.area-group').dataset.area;
+        copy.querySelector('.sop-detail').prepend(label);
+        resultList.append(copy);
       }
-    });
-  });
-</script>
-
+    }
+    search.addEventListener('input', updateSearch);
+    clear.addEventListener('click', () => {search.value='';updateSearch();search.focus()});
+    document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => {search.value=chip.dataset.query;updateSearch();search.focus()}));
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => {if(search.value){search.value='';updateSearch()}}));
+  </script>
 </body>
 </html>
