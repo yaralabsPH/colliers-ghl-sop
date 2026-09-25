@@ -45,17 +45,19 @@
     .section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:36px}
     .text-link{color:var(--orange);text-decoration:none;font-size:15px;font-weight:500;white-space:nowrap}
     .text-link:hover{text-decoration:underline}
-    .area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px 24px}
+    .area-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 28px}
     .area-card{text-decoration:none;color:inherit;min-width:0}
     .area-card:hover .area-name{color:var(--orange)}
-    .area-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top left;border-radius:8px;background:#f3f6fa;border:1px solid var(--line)}
-    .area-card img.logo-image{object-fit:contain;padding:36px;background:#f3f6fa}
+    .area-card picture{display:block;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#f7f3ea}
+    .area-card picture img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+    .area-card:hover picture img{transform:scale(1.03)}
     .area-name{display:block;font-size:19px;font-weight:500;color:var(--navy);margin-top:17px}
     .area-count{display:block;font-size:14px;color:var(--faint);margin-top:4px}
     #areas{padding-bottom:120px}
     .video-band{background:var(--pale);padding:96px 0}
     .video-layout{display:flex;flex-wrap:wrap;align-items:center;gap:40px}
-    .video-cover{flex:1 1 340px;max-width:560px;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:8px;border:1px solid #dfe7f0;background:var(--light)}
+    .video-cover{display:block;flex:1 1 340px;max-width:560px;width:100%;aspect-ratio:16/10;border-radius:18px;overflow:hidden;background:#f7f3ea}
+    .video-cover img{display:block;width:100%;height:100%;object-fit:cover}
     .video-copy{flex:1 1 360px;min-width:0}
     .video-copy>p{font-size:16px;color:var(--body);margin:12px 0 28px}
     .video-item{display:flex;align-items:center;gap:16px;padding:15px 0;border-top:1px solid #e3e9f0;text-decoration:none;color:var(--ink);font-size:15px;font-weight:500}
@@ -91,9 +93,11 @@
     .results .sop-row{border-top:0;border-bottom:1px solid var(--line)}
     .site-footer{border-top:1px solid var(--line)}
     .footer-inner{padding-top:28px;padding-bottom:28px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--faint);font-size:13px}
+    @media(max-width:900px){.area-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:800px){.video-cover{max-width:none}.video-layout{align-items:flex-start}}
-    @media(max-width:640px){.container{padding-left:20px;padding-right:20px}.nav-inner{min-height:72px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}.nav-links{gap:16px;width:100%;margin-left:54px}.hero{padding-top:68px;padding-bottom:72px}h1{font-size:42px}h2{font-size:32px;line-height:38px}.section-head{align-items:flex-start;flex-wrap:wrap}.area-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}#areas{padding-bottom:84px}.video-band{padding:72px 0}.all-sops{padding-top:84px;padding-bottom:90px}.all-sops>h2{margin-bottom:44px}.area-group{gap:18px;margin-bottom:48px}.group-heading{flex-basis:100%}.video-area{max-width:90px}.sop-detail{flex-basis:100%}}
-    @media(max-width:390px){.area-grid{grid-template-columns:1fr}.area-card img{max-height:210px}.nav-links{margin-left:0}h1{font-size:38px}}
+    @media(max-width:640px){.container{padding-left:20px;padding-right:20px}.nav-inner{min-height:72px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}.nav-links{gap:16px;width:100%;margin-left:54px}.hero{padding-top:68px;padding-bottom:72px}h1{font-size:42px}h2{font-size:32px;line-height:38px}.section-head{align-items:flex-start;flex-wrap:wrap}#areas{padding-bottom:84px}.video-band{padding:72px 0}.all-sops{padding-top:84px;padding-bottom:90px}.all-sops>h2{margin-bottom:44px}.area-group{gap:18px;margin-bottom:48px}.group-heading{flex-basis:100%}.video-area{max-width:90px}.sop-detail{flex-basis:100%}}
+    @media(max-width:560px){.area-grid{grid-template-columns:1fr}}
+    @media(max-width:390px){.nav-links{margin-left:0}h1{font-size:38px}}
   </style>
 </head>
 <body>
@@ -122,18 +126,18 @@
       <section id="areas" class="container">
         <div class="section-head"><h2>Browse by area</h2><a class="text-link" href="#all">View all SOPs &rarr;</a></div>
         <div class="area-grid">
-          <a class="area-card" href="#website"><img src="assets/area-website.jpg" alt="Colliers website quote form" loading="lazy"><span class="area-name">Website Enquiries</span><span class="area-count">2 guides</span></a>
-          <a class="area-card" href="#integrations"><img src="assets/area-integrations.jpg" alt="A contact record in GoHighLevel" loading="lazy"><span class="area-name">Integrations</span><span class="area-count">1 guide</span></a>
-          <a class="area-card" href="#tastings"><img class="logo-image" src="assets/apple-icon-180x180.png" alt="Colliers Catering logo" loading="lazy"><span class="area-name">Free Tasting Bookings</span><span class="area-count">2 guides</span></a>
-          <a class="area-card" href="#leads"><img src="assets/area-crm.jpg" alt="Colliers website chat widget" loading="lazy"><span class="area-name">CRM Lead Management</span><span class="area-count">1 guide</span></a>
-          <a class="area-card" href="#reengagement"><img src="assets/area-integrations.jpg" alt="GoHighLevel contact record" loading="lazy"><span class="area-name">Customer Re-engagement</span><span class="area-count">1 guide</span></a>
-          <a class="area-card" href="#mobile"><img class="logo-image" src="assets/apple-icon-180x180.png" alt="Colliers Catering logo" loading="lazy"><span class="area-name">General CRM Usage</span><span class="area-count">1 guide</span></a>
+          <a class="area-card" href="#website"><picture><source srcset="images/area-website-enquiries.webp" type="image/webp"><img src="images/area-website-enquiries.png" alt="Website Enquiries – silver tray with a sealed envelope" loading="lazy"></picture><span class="area-name">Website Enquiries</span><span class="area-count">2 guides</span></a>
+          <a class="area-card" href="#integrations"><picture><source srcset="images/area-integrations.webp" type="image/webp"><img src="images/area-integrations.png" alt="Integrations – two teacups pouring into a teapot" loading="lazy"></picture><span class="area-name">Integrations</span><span class="area-count">1 guide</span></a>
+          <a class="area-card" href="#tastings"><picture><source srcset="images/area-free-tasting.webp" type="image/webp"><img src="images/area-free-tasting.png" alt="Free Tasting Bookings – tiered stand with tasting treats" loading="lazy"></picture><span class="area-name">Free Tasting Bookings</span><span class="area-count">2 guides</span></a>
+          <a class="area-card" href="#leads"><picture><source srcset="images/area-crm-lead-management.webp" type="image/webp"><img src="images/area-crm-lead-management.png" alt="CRM Lead Management – filing box with contact folders" loading="lazy"></picture><span class="area-name">CRM Lead Management</span><span class="area-count">1 guide</span></a>
+          <a class="area-card" href="#reengagement"><picture><source srcset="images/area-customer-reengagement.webp" type="image/webp"><img src="images/area-customer-reengagement.png" alt="Customer Re-engagement – envelope tied with ribbon and a rose" loading="lazy"></picture><span class="area-name">Customer Re-engagement</span><span class="area-count">1 guide</span></a>
+          <a class="area-card" href="#mobile"><picture><source srcset="images/area-general-crm.webp" type="image/webp"><img src="images/area-general-crm.png" alt="General CRM Usage – open notebook with ink and pen" loading="lazy"></picture><span class="area-name">General CRM Usage</span><span class="area-count">1 guide</span></a>
         </div>
       </section>
 
       <section id="videos" class="video-band" aria-labelledby="videos-title">
         <div class="container video-layout">
-          <img class="video-cover" src="assets/area-crm.jpg" alt="GoHighLevel screen walkthrough preview" loading="lazy">
+          <picture class="video-cover"><source srcset="images/video-banner.webp" type="image/webp"><img src="images/video-banner.png" alt="Vintage film projector lighting up a silver cloche" loading="lazy"></picture>
           <div class="video-copy"><h2 id="videos-title">Watch it done</h2><p>Screen walkthroughs you can follow along with.</p>
             <a class="video-item" href="https://www.loom.com/share/e11a05caa3774129b4909a9cb0b86730"><span class="play-circle" aria-hidden="true">&#9654;</span><span class="video-title">How Flex orders appear in GHL</span><span class="video-area">Integrations</span></a>
             <a class="video-item" href="free-tasting-booking-video.html"><span class="play-circle" aria-hidden="true">&#9654;</span><span class="video-title">Send a customer the free tasting booking link</span><span class="video-area">Free Tasting</span></a>
